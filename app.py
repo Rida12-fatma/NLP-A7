@@ -12,13 +12,13 @@ tokenizer = BertTokenizer.from_pretrained('tokenizer')
 base_model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
 # Load the saved LoRA state dictionary (adjust path if needed)
 lora_state_dict = torch.load('student_lora.pth')['model_state']
-# Since LoRA was used, we assume the state dict needs to be adapted; here we simulate loading
+# Since LoRA was used, we assume the state dict needs to be adapted
 model = base_model  # Placeholder; in a real scenario, use PeftModel to load LoRA weights
 model.load_state_dict(lora_state_dict, strict=False)  # Loose loading due to simulation
 model.eval()  # Set model to evaluation mode
 
-# Check if GPU is available
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# Check if GPU is available (CPU-only for Streamlit Cloud)
+device = torch.device('cpu')  # Streamlit Cloud doesn’t support GPU
 model.to(device)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -34,7 +34,7 @@ def classify_text():
 
         # Tokenize the input text
         inputs = tokenizer(input_text, return_tensors='pt', truncation=True, padding=True, max_length=128)
-        inputs = {key: val.to(device) for key, val in inputs.items()}  # Move to GPU if available
+        inputs = {key: val.to(device) for key, val in inputs.items()}  # Move to CPU
 
         # Perform inference
         with torch.no_grad():
@@ -54,8 +54,6 @@ def classify_text():
 if __name__ == '__main__':
     # Run the Flask app in debug mode on localhost:5000
     app.run(debug=True, host='0.0.0.0', port=5000)
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -111,3 +109,6 @@ if __name__ == '__main__':
     </div>
 </body>
 </html>
+
+
+
