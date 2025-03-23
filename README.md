@@ -1,9 +1,5 @@
 # NLP-A7
 
-Below is a `README.md` file tailored for your assignment submission based on the provided Jupyter notebook and the assignment requirements. It includes instructions for setup, running the code in Colab, and deploying the web app (Task 5), ensuring it meets the deliverables specified in the assignment (GitHub link, README, and `app` folder).
-
----
-
 ```markdown
 # AT82.05 Assignment 7: Training Distillation vs LoRA
 
