@@ -5,6 +5,9 @@
 
 This repository contains the solution for the AT82.05 Artificial Intelligence: Natural Language Understanding (NLU) Assignment 7, titled "Training Distillation vs LoRA," submitted on March 23, 2025. The assignment compares Odd Layer and Even Layer Student Training Models with LoRA (Low-Rank Adaptation) using BERT from Hugging Face, applied to a hate speech/toxic comment classification task.
 
+## deployment link
+https://a7-nlp-8sawomu4vsebjudply8jnc.streamlit.app/
+
 ## Deliverables
 - **Jupyter Notebook**: `A7_Distillation_vs_LoRA.ipynb` (Located in the root directory)
 - **Web Application**: Folder `app/` (Contains Flask app for Task 5)
